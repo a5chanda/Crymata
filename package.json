@@ -1,0 +1,22 @@
+{
+  "name": "crymata",
+  "version": "1.0.0",
+  "description": "A mobile cryptocurrency platform for common transactions with ICOs and other Cryptocurrencies",
+  "main": "Web3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a5chanda/Crymata.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a5chanda/Crymata/issues"
+  },
+  "homepage": "https://github.com/a5chanda/Crymata#readme",
+  "dependencies": {
+    "web3": "github:ethereum/web3.js"
+  }
+}
