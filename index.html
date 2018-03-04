@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+
+        <h1>Crymata Info</h1> <!-- Input the Balance-->       
+
+        <label for="Currency name" class="col-lg-2 control-label">Currency</label>      
+        <input id="name" type="text">
+
+        <label for="Balance" class="col-lg-2 control-label">Balance</label>
+        <input id="Balance" type="text">
+
+        <label for= "Sent" class="col-lg-2 control-label">Send</label>
+        <input id= "amountSent" type="text">
+
+        <label for="name" class="col-lg-2 control-label">Private Address</label>
+        <input id="address" type="text">
+
+        <label for="name" class="col-lg-2 control-label">Private Address 2</label>
+        <input id="address2" type="text">
+
+        <button onclick="send()" id="button">Accept Transaction</button>
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script>
+        if(typeof web3 !== 'undefined'){
+            web3 = new Web3(web3.currentProvider);
+        }
+        else{
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        } 
+
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+        web3.eth.defaultAccount = web3.eth.accounts[1];
+        //var account = web3.eth.defaultAccount; 
+        var FunctionsContract = web3.eth.contract([
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "_addr",
+                "type": "address"
+            }
+        ],
+        "name": "getEthBalance",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "standard",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "name",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "address"
+            },
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "allowance",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "balance",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "RUBY",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_from",
+                "type": "address"
+            },
+            {
+                "name": "_to",
+                "type": "address"
+            },
+            {
+                "name": "_value",
+                "type": "uint256"
+            }
+        ],
+        "name": "transferFrom",
+        "outputs": [
+            {
+                "name": "success",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "value",
+                "type": "uint256"
+            }
+        ],
+        "name": "Transfer",
+        "type": "event"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_add",
+                "type": "address"
+            }
+        ],
+        "name": "get_balance",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    }
+]); 
+        
+
+        function send() {
+            var ether1 = $('#address').val();
+            var ether2 = $('#address2').val();
+            var amount = $('#amountSent').val();
+
+            web3.eth.sendTransaction({
+            from: ether1,
+            to: ether2,
+            value: amount
+            }); 
+
+            console.log("Balance 0: " + web3.fromWei(web3.eth.getBalance(ether1)));
+            console.log("Balance 1: " + web3.fromWei(web3.eth.getBalance(ether2)));
+        }
+
+      /*  console.log("Balance 0: " + web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0]), 'ether'));
+        
+
+        /*web3.eth.sendTransaction({
+            from: web3.eth.accounts[0],
+            to: web3.eth.accounts[1],
+            value: '5000000000000000000'
+
+        }), 
+
+        console.log("Balance 1: " + web3.fromWei(web3.eth.getBalance(web3.eth.accounts[1]))); */
+
+
+    </script> 
+
+</body>
+</html>
