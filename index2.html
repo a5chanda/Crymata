@@ -20,7 +20,7 @@
         <option value="ether">Ethereum</option>
         <option value="null">Etc</option>
     </select>
-<script> getCurrentType();</script>
+<script> getCurrentType(value);</script>
 </p>
 <p> Latest block:
 <script> document.write(web3.eth.blockNumber + "<br><br>");
@@ -30,8 +30,9 @@
     <script> printAccountBalance();</script>
 </p>
 <p></p>
-<p> Get your previous transactions
-<script> getTransactionHistory();</script></p>
+<p>
+    <button type="button">Get your previous transactions</button>
+<script> getTransactionHistory(button);</script></p>
 <p> Make a transaction:
     <script> sendMoneyBusiness();</script>
 </p>
