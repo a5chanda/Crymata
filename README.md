@@ -1,2 +1,2 @@
-# Crymata
-A mobile cryptocurrency platform for common transactions with ICOs and other Cryptocurrencies
+# Crymata-V1.0
+# Crymata-V1.0
