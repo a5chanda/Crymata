@@ -14,21 +14,24 @@
 <body>
     <div class="container">
 
-        <h1>Crymata Info</h1> <!-- Input the Balance-->
+        <h1>Crymata Info</h1> <!-- Input the Balance-->       
 
-        
-
-        <label for="name" class="col-lg-2 control-label">Currency</label>
+        <label for="Currency name" class="col-lg-2 control-label">Currency</label>      
         <input id="name" type="text">
 
-        <label for="name" class="col-lg-2 control-label">Balance</label>
-        <input id="name" type="text">
+        <label for="Balance" class="col-lg-2 control-label">Balance</label>
+        <input id="Balance" type="text">
 
-        <label for="name" class="col-lg-2 control-label">
-        Private Address</label>
-        <input id="age" type="text">
+        <label for= "Sent" class="col-lg-2 control-label">Send</label>
+        <input id= "amountSent" type="text">
 
-        <button id="button">Update Info</button>
+        <label for="name" class="col-lg-2 control-label">Private Address</label>
+        <input id="address" type="text">
+
+        <label for="name" class="col-lg-2 control-label">Private Address 2</label>
+        <input id="address2" type="text">
+
+        <button onclick="send()" id="button">Accept Transaction</button>
 
 
     </div>
@@ -48,76 +51,6 @@
         var FunctionsContract = web3.eth.contract([
     {
         "constant": true,
-        "inputs": [],
-        "name": "name",
-        "outputs": [
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [],
-        "name": "RUBY",
-        "outputs": [],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "totalSupply",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_add",
-                "type": "address"
-            }
-        ],
-        "name": "get_balance",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "decimals",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint8"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
         "inputs": [
             {
                 "name": "_addr",
@@ -129,53 +62,6 @@
             {
                 "name": "",
                 "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "standard",
-        "outputs": [
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "name": "balanceOf",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "owner",
-        "outputs": [
-            {
-                "name": "",
-                "type": "address"
             }
         ],
         "payable": false,
@@ -199,11 +85,39 @@
     {
         "constant": true,
         "inputs": [],
-        "name": "balance",
+        "name": "standard",
         "outputs": [
             {
                 "name": "",
-                "type": "uint256"
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "name",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
             }
         ],
         "payable": false,
@@ -234,6 +148,103 @@
         "type": "function"
     },
     {
+        "constant": true,
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": true,
+        "inputs": [],
+        "name": "balance",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "RUBY",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_from",
+                "type": "address"
+            },
+            {
+                "name": "_to",
+                "type": "address"
+            },
+            {
+                "name": "_value",
+                "type": "uint256"
+            }
+        ],
+        "name": "transferFrom",
+        "outputs": [
+            {
+                "name": "success",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
         "anonymous": false,
         "inputs": [
             {
@@ -254,26 +265,56 @@
         ],
         "name": "Transfer",
         "type": "event"
+    },
+    {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "_add",
+                "type": "address"
+            }
+        ],
+        "name": "get_balance",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
     }
 ]); 
         
-        var etherAccount1 = FunctionsContract.at('0x450d66c16356c8c7e5becab6b77b0ec0aefa4ca9');
-        var etherAccount2 = FunctionsContract.at('0xcd5a1cf82f8132a6f5685ca065cd4520774c5707');
 
-        console.log(etherFunctions);
+        function send() {
+            var ether1 = $('#address').val();
+            var ether2 = $('#address2').val();
+            var amount = $('#amountSent').val();
 
-        console.log("Balance: " + web3.fromWei(web3.eth.getBalance(web3.eth.etherAccount1), 'ether'));
+            web3.eth.sendTransaction({
+            from: ether1,
+            to: ether2,
+            value: amount
+            }); 
 
-        web3.eth.sendTransaction({
+            console.log("Balance 0: " + web3.fromWei(web3.eth.getBalance(ether1)));
+            console.log("Balance 1: " + web3.fromWei(web3.eth.getBalance(ether2)));
+        }
+
+      /*  console.log("Balance 0: " + web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0]), 'ether'));
+        
+
+        /*web3.eth.sendTransaction({
             from: web3.eth.accounts[0],
             to: web3.eth.accounts[1],
-            value: '5000000000000'
+            value: '5000000000000000000'
 
         }), 
 
-        console.log("Balance 1: " + web3.eth.getBalance(web3.eth.accounts[0]));
+        console.log("Balance 1: " + web3.fromWei(web3.eth.getBalance(web3.eth.accounts[1]))); */
 
-        
 
     </script> 
 
