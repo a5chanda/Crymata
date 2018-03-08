@@ -1,2 +1,1 @@
-# Crymata-V1.0
-# Crymata-V1.0
+Crymata is an ethereum based smart wallet and a platform for selling goods. It is targeted towards University students in particular so that they can use any crypto-currency to conduct transactions. Currently the platform is limited to the Ethereum blockchain but we are planning on incorporating other common crypto currencies as well.
